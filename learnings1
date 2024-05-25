@@ -1,0 +1,24 @@
+4 important concepts in springboot
+
+Inversion of Control (IoC): IoC is like giving the keys of your car to someone else and letting them drive. In Spring,
+IoC means giving control of object creation and management to the framework, so you can focus on writing business logic.
+
+Aspect-Oriented Programming (AOP): AOP helps you tackle common tasks that cut across different parts of your application,
+like logging or security. By separating these concerns, your code becomes more organized and easier to maintain.
+
+Spring MVC: Spring MVC is like having a personal assistant for handling web requests. It takes care of mapping URLs 
+to controllers and generating web pages, so you can focus on building your application’s functionality.
+
+Spring Data: Spring Data is like having a magic wand for working with databases. It provides a unified interface for
+interacting with different types of databases, saving you time and effort.
+
+
+
+@SpringApplication
+
+contains 3 annotations
+
+1.@Autoconfiguration: this tells the spring to create the beans instead of user creating manually which are added in dependencies
+2.@ComponentScan is an annotation that tells Spring where to look for annotated components, such as @Component, @Service, @Repository, and @Controller. 
+When Spring's application context starts up, it will automatically discover and register these components as beans.
+3.@onfiguration: Marks the class as a configuration class, a source of bean definitions.
