@@ -14,7 +14,7 @@ interacting with different types of databases, saving you time and effort.
 
 
 
-@SpringApplication
+1) @SpringApplication
 
 contains 3 annotations
 
@@ -22,3 +22,118 @@ contains 3 annotations
 2.@ComponentScan is an annotation that tells Spring where to look for annotated components, such as @Component, @Service, @Repository, and @Controller. 
 When Spring's application context starts up, it will automatically discover and register these components as beans.
 3.@onfiguration: Marks the class as a configuration class, a source of bean definitions.
+
+
+2)What does @RestController mean?**
+
+It is equal to:
+
+@Controller + @ResponseBody
+Meaning:
+
+Every method returns data (JSON) directly, not a webpage.
+
+
+3)Dependecy Injection : mean spring injects objects , instead of develper creating them
+
+4)🔹 1. Spring Container (IoC Container)
+
+Spring Boot manages objects for you.
+
+Instead of:
+
+UserService service = new UserService();
+
+You write:
+
+@Service
+public class UserService { }
+
+Spring Boot creates and manages this object automatically.
+
+This is called:
+👉 Inversion of Control (IoC)
+
+
+5)What is Dependency Injection? Explain constructor vs field vs setter injection. Which is best and why?
+
+we have class A with some method x
+we have class B we want x method from A
+
+we inject A in class B if we use autowire to that , if we call class A method from class B we are able to call, but if A object is not present it will
+throw no bean exception
+
+we can avoid this using constructor injection, also we can avoid reflection in test classes , mocking reduces 
+
+
+6) bean life cycle
+
+bean intiated
+dependency injection
+preconstruct
+ready to use
+postconstruct
+
+7 ) How do you handle exceptions globally in Spring Boot?
+
+
+@ControllerAdvice add this annotation on top of class
+@ExceptionHandler(type of exception class) add this annotation on top of method
+
+
+8) jpa,hibernate,spring jpa
+
+JPA	Choreographer / Dance Blueprint	Tells everyone the rules of the dance (how to map Java objects to DB tables). It doesn’t dance itself.
+Hibernate	Professional dancer	Follows the choreography and actually performs the dance (runs SQL, maps objects to tables, handles transactions).
+Spring Data JPA	Dance coach / choreographer’s assistant	Makes the dance easier to perform: gives dancers ready-made steps, so you don’t have to teach every move manually (like automatic CRUD, repository methods, pagination).
+
+
+9) what happens when springbootApplication.run()
+
+- spring creates application context which is a container which can be used to store the beans
+- scan of bean
+- create and register of the beans
+- beans are injected via dependency injection
+- autoconfiguraton handles the setup of dependency like tomcat,jackson,spring mvc etc
+- Spring Boot starts an embedded server like Tomcat. app is ready to listen to requests.
+- Application Ready to Serve Requests
+
+10) Type of beans
+- single : throught the request only one bean is shared
+- prototype : for every request new bean is created
+- session : for every session new bean is created
+
+11) what happens when request comes from client to backend 
+
+Client
+  |
+  v
+Tomcat (Embedded Server)
+  |
+  v
+DispatcherServlet
+  |
+  v
+HandlerMapping → finds Controller
+  |
+  v
+Controller → Service → Repository
+  |
+  v
+MessageConverter (Java → JSON)
+  |
+  v
+DispatcherServlet
+  |
+  v
+Client (Response)
+
+
+12) The one extra thing that @Repository has (which @Component or @Service does NOT) is:
+
+repository has extra feature know as Exception Translation means when something fails in db like key is missing, data missing, sql expection 
+these low level expection are combined under one common exception so it is easy to handle, so instead of having multiple catch blocks for each 
+db-level exception we can have common expection
+
+
+
